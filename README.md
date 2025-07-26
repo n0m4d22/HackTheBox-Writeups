@@ -6,5 +6,5 @@ This repository is licensed under the [Creative Commons Attribution-NonCommercia
 
 ## Writeups
 
-- [Cypher](cypher/cypher_writeup.md)
+- [Cypher](cypher/cypher-writeup.md)
       
