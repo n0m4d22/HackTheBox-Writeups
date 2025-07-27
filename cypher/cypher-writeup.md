@@ -1,10 +1,10 @@
 # Write-Up: Cypher - Medium
 
->  Platform: Hack The Box  
->  OS: Linux  
->  Difficulty: Medium
->  Author: Fokos Nikolaos
->  Completion Date: 09-07-2025  
+>  Platform: Hack The Box\
+>  OS: Linux\
+>  Difficulty: Medium\
+>  Author: Fokos Nikolaos\
+>  Completion Date: 09-07-2025\
 >  Objective: Capture `user.txt` and `root.txt` flags
 
 # Summary
