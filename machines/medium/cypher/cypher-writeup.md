@@ -7,6 +7,8 @@
 >  Completion Date: 09-07-2025\
 >  Objective: Capture `user.txt` and `root.txt` flags
 
+![alt text](images/banner.png)
+
 # Summary
 This write-up demonstrates the discovery and exploitation of Cypher, a vulnerable Linux machine on Hack The Box, involving Cypher injection, reverse shell execution, and local privilege escalation. It showcases practical experience in offensive security methodologies, including enumeration, web vulnerability analysis, secure code inspection, and post-exploitation techniques.
 
@@ -15,12 +17,17 @@ This write-up demonstrates the discovery and exploitation of Cypher, a vulnerabl
 ## Target Enumeration
 
 ### Nmap Scan
-```bash
-nmap -sC -sV -F 10.129.183.236
-```
+
+`nmap -sV -sC -F 10.129.183.236`
+
+#### Parameters:
+- `-sV` Used to print the version of found services.
+- `-sC` Used to print more details about found services.
+- `-F` Scan the 1000 commonly used ports.
+  
 Initialized an nmap scan to the target IP and found two open ports and their services with the corresponding versions.
 
-![alt text](images/image.png)
+![alt text](images/image-nmap.png)
 
 **Results:**
 - Port 22/tcp - SSH (OpenSSH 9.6p1)
@@ -167,12 +174,13 @@ On our spawned root shell we can `cd /root` and finally capture the root flag wi
 
 ## Vulnerabilities
 
-- Repeated use of credentials.
+- Credential recycling.
 - Insecure implementation of custom functions.
 - Insecure handling of Cypher Queries.
-- Out-of-Date software.
+- Ooutdated software.
 - Partially unrestricted use of root privileges.
 
+---
 
 ## Learning Outcome
 
@@ -182,7 +190,7 @@ This lab deepened my understanding of less common injection vectors (Cypher), se
 
 ## Tools Used
 
-- nmap, gobuster, Burp Suite, netcat, linpeas, custom scripts
+- nmap, gobuster, Burp Suite, netcat, linpeas, custom scripts.
 
 ---
 

@@ -6,5 +6,6 @@ This repository is licensed under the [Creative Commons Attribution-NonCommercia
 
 ## Writeups
 
-- [Cypher](cypher/cypher-writeup.md)
+- [Cypher](machines/medium/cypher/cypher-writeup.md)
+- [Dog](machines/easy/dog/dog-writeup.md)
       
