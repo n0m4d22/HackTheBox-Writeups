@@ -55,6 +55,7 @@ Let's take a step further on our enumeration attempts and use `gobuster` or `dir
 From the results we can see the **.git** directory and **robots.txt** file nmap detected previously, along some additional endpoints like `/themes`, `/sites` and `/core`.
 
 ![alt text](images/image-3.png)
+
 ![alt text](images/image-4.png)
 
 Visiting `http://dog.htb/.git` we can find the complete git source of the webpage.
