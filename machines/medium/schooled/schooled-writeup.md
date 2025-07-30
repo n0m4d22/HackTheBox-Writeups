@@ -46,7 +46,7 @@ We start by enumerating the target with some extra parameters, discovering poten
 
 ## Web Enumeration
 
-Browsing on the target's port 80 we find a webpage regarding education. We have `Home`, `About`, `Teachers` and `Contact` pages. Enumerating these pages as a normal user, searching for useful information, we can detect a domain at the bottom of `Home` named `schooled.htb` along with an email address `admissions@schooled.htb`. This is probably the domain where the target is using to host the webpage.
+Browsing on the target's port 80 we find a webpage regarding online education. We have `Home`, `About`, `Teachers` and `Contact` pages. Enumerating these pages as a normal user, searching for useful information, we can detect a domain at the bottom of `Home` named `schooled.htb` along with an email address `admissions@schooled.htb`. This is probably the domain where the target is using to host the webpage.
 
 The domain is added on `/etc/hosts`.
 
@@ -54,7 +54,7 @@ The domain is added on `/etc/hosts`.
 echo "10.129.96.53 schooled.htb" | sudo tee -a /etc/hosts
 ```
 
-Moving on we can try dir busting the domain for other pages and endpoint using `diresearch` or `gobuster`.
+Moving on we can try dir busting the domain for other pages and endpoints using `diresearch` or `gobuster`.
 
 ```bash
 dirsearch -u http://schooled.htb
@@ -69,7 +69,7 @@ gobuster dir -w /usr/share/wordlists/dirb/common.txt -u http://schooled.htb
 
 The results show some unusual files `.hta`, `.htaccess` and `.htpasswd`, but the access to them is forbidden (403). Besides these files the rest of the page tree seems normal.
 
-Taking our enumeration process a bit further we use `wfuzz` to search for possible subdomains of `schooled.htb`.
+Taking our enumeration process a bit further, we use `wfuzz` to search for possible subdomains of `schooled.htb`.
 
 ```bash
 wfuzz -u http://10.129.96.53 -H "Host: FUZZ.schooled.htb" -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --hh 20750
@@ -81,23 +81,23 @@ Fuzzing the target we found an accessible subdomain named `moodle`.
 
 We add `moodle.schooled.htb` next to `10.129.96.53 schooled.htb` to add the second domain linked with the target's IP address and can now access the page.
 
-Browsing to `http://moodle.schooled.htb/` and are directed to `/modules`. The webpage has some courses and other functions, but the one that catches our attention is the **Log in** page.
+Browsing to `http://moodle.schooled.htb/` redirects to `/moodle`. The homepage has some courses and other functions, but the one that catches our attention is the **Log in** page.
 
 ![alt text](images/image-3.png)
 
 The page allows us to create a new account or login as a guest user.
 
-Logging in as guest, we can browse the courses and but we cannot access them, we can also view the course's teacher but it's inaccessible without user login.
+Logging in as guest, we can browse the courses but we cannot access them, we can also view information about the course's teacher but it's inaccessible without an authenticated user.
 
 The next step is to try and create a user account using the `Create new account`.
 
-Using dummy credentials we register to the platform to gain access to course and teacher information.
+Using dummy credentials we register to the platform to gain access to courses and teacher information.
 
 ![alt text](images/image-4.png)
 
 On the next page we are required to confirm our account by pressing a button, and we finally have access to our courses.
 
-Browsing the courses we notice that the only one we can enrol to, is Mathematics.
+Browsing the courses we notice that the only one we can enroll to, is Mathematics.
 
 ![alt text](images/image.png)
 
@@ -143,7 +143,7 @@ We take the enumeration process another step further, and use **ZAProxy** to und
 sudo zaproxy
 ```
 
-Using ZAP to scan `moodle.schooled.htb` we can find critical SQL injection vulnerabilities, that may grant us access.
+Using ZAP to scan `moodle.schooled.htb` we can find critical SQL injection vulnerabilities, that may grant us access as a teacher or page admin.
 
 Trying common boolean conditions like `guest' AND '1'='1' -- ` and  `'admin OR 1=1` on the login page has no result.
 
@@ -157,23 +157,24 @@ searchsploit moodle
 
 We find a remote code execution exploit (RCE) for Moodle 3.9 but requires authentication as **teacher**.
 
-Searching on the web we find that Moodle 3.9 RCE exploit is disclosed as **CVE-2020-14321**.
+Searching on the web we find that a Moodle 3.9 RCE exploit is disclosed as **CVE-2020-14321**.
 
 If we find a way to authenticate as a **teacher** we may be able to spawn a reverse shell, giving us access to the system.
 
 At this point we need to enumerate further the webpage and find a way to login to the platform as **teacher**.
 
-We can try brute-forcing the teacher's password using their name found in the announcements section.
+We can try brute-forcing the teacher's password using their name found in the announcements section and commond credentials.
 
-Trying credentials like `manuel / 1234`, `manuel / manuel` and other common inputs, has also no result.
+Trying inputs like `manuel / 1234`, `manuel / manuel` and other common passwords, has also no result.
 
-Searching for general Moodle 3.9 vulnerabilities, we find an XSS (Cross-Site Scripting) exploit disclosed as **CVE-2020-25627**. The vulnerability reports that the `MoodleNet profile` field on our user's profile can be manipulated and execute malicious scripts.
+Searching for general Moodle 3.9 vulnerabilities, we find an XSS (Cross-Site Scripting) exploit disclosed as **CVE-2020-25627**. The vulnerability reports that the `MoodleNet profile` field on our user's profile, can be manipulated and execute malicious scripts.
 
-With a quick inspection of our `Edit profile` page, we can see that the field accepts plain text as input and there is no proper input sanitization.
+With a quick inspection of our `Edit profile` page, we can see that, field `id_moodlenetprofile` accepts plain text input and there is no proper sanitization.
 
 ![alt text](images/image-13.png)
 
-A mitigation solution in this case would be to add additional parameters like the following to restrict the input.
+A mitigation solution in this case would be to add additional parameters like `pattern` to restrict the form of the input.
+
 ```html
 pattern="https://.*"
 inputmode="url"
@@ -181,7 +182,7 @@ inputmode="url"
 
 This method though is not enough by its own, server-sided actions would be required to fully mitigate the XSS vulnerability like input escaping, validation and sanitization.
 
-With further inspection, we can also notice the use of a session cookie to keep the user logged in.
+With further inspection of the page, under **Storage** > **Cookies** we notice the use of a session cookie to keep the user logged in.
 
 ![alt text](images/image-14.png)
 
