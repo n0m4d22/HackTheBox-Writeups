@@ -1,4 +1,4 @@
-# Write-Up: Cypher - Medium
+# Write-Up: Cypher - Medium | [Machines](../../../MACHINES.md)
 
 >  Platform: Hack The Box\
 >  OS: Linux\
@@ -6,6 +6,10 @@
 >  Author: Fokos Nikolaos\
 >  Completion Date: 09-07-2025\
 >  Objective: Capture `user.txt` and `root.txt` flags
+
+---
+
+# Banner
 
 ![alt text](images/banner.png)
 
@@ -190,7 +194,7 @@ This lab deepened my understanding of less common injection vectors (Cypher), se
 
 ## Tools Used
 
-- nmap, gobuster, Burp Suite, netcat, linpeas, custom scripts.
+- `nmap`, `gobuster`, `burpsuite`, `netcat`, `linpeas.sh`.
 
 ---
 

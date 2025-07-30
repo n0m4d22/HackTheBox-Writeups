@@ -1,4 +1,4 @@
-# Write-Up: Dog - Easy
+# Write-Up: Dog - Easy | [Machines](../../../MACHINES.md)
 
 >  Platform: Hack The Box\
 >  OS: Linux\
@@ -6,6 +6,10 @@
 >  Author: Fokos Nikolaos\
 >  Completion Date: 04-07-2025\
 >  Objective: Capture `user.txt` and `root.txt` flags
+
+---
+
+# Banner
 
 ![alt text](images/banner.png)
 
@@ -239,7 +243,7 @@ This machine demonstrated the importance of avoiding credential reuse. I also le
 ---
 
 ## Tools Used
-- nmap, dirsearch, netcat, searchsploit.
+- `nmap`, `dirsearch`, `netcat`, `searchsploit`.
 
 ---
 
