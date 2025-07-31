@@ -1,4 +1,4 @@
-# Write-Up: Era - Medium | [Machines](../../../MACHINES.md)
+# Preview: Era - Medium | [Machines](../../../MACHINES.md)
 
 >  Platform: Hack The Box\
 >  OS: Linux\
