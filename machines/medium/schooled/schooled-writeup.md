@@ -35,7 +35,7 @@ nmap -sV -sC -p- -T4 -Pn --stats-every 5s 10.129.96.53
 
 We start by enumerating the target with some extra parameters, discovering potential ports outside of the "Well-Known" limits.
 
-![alt text](images/image-nmap.png)
+![alt text](images/nmap_scan.png)
 
 **Results:**
 - Port 22/tcp - OpenSSH 7.9 (FreeBSD 20200214; protocol 2.0)

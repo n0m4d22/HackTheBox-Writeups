@@ -27,11 +27,11 @@ This write-up demonstrates the discovery and exploitation of Cypher, a vulnerabl
 #### Parameters:
 - `-sV` Used to print the version of found services.
 - `-sC` Used to print more details about found services.
-- `-F` Scan the 1000 commonly used ports.
+- `-F` Scan the most commonly used ports.
   
 Initialized an nmap scan to the target IP and found two open ports and their services with the corresponding versions.
 
-![alt text](images/image-nmap.png)
+![alt text](images/nmap_scan.png)
 
 **Results:**
 - Port 22/tcp - SSH (OpenSSH 9.6p1)
@@ -135,7 +135,7 @@ We can find also a configuration file named `bbot_preset.yml` containing some in
 The file contains credentials for the neo4j user. We can try and use the credentials to see if they are used for other services like ssh.
 Executing `ssh graphasm@10.129.183.236` and logging in with the password `cU4btyib.20xtCMCXkBmerhK` found inside `bbot_preset.yml` we successfully login as the `graphasm` user to the system and captured the user flag!
 
-![alt text](images/image-13.png)
+![alt text](images/user_flag.png)
 
 ---
 
@@ -172,7 +172,7 @@ Running the command `sudo /usr/local/bin/bbot -t dummy.com -p ~/preset.yml --eve
 
 On our spawned root shell we can `cd /root` and finally capture the root flag with `cat root.txt`.
 
-![alt text](images/image-17.png)
+![alt text](images/root_flag.png)
 
 ---
 

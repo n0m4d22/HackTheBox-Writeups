@@ -25,13 +25,13 @@ This writeup documents the full exploitation of the "Dog" machine on Hack The Bo
 #### Parameters:
 - `-sV` Used to print the version of found services.
 - `-sC` Used to print more details about found services.
-- `-F` Scan the 1000 commonly used ports.
+- `-F` Scan the most commonly used ports.
 
 We begin by scanning our target IP address using nmap. We search for open ports and their service version, along with some more information.
 
 The results of the scan show some interesting information about our target. We can find an exposed **.git** directory and an accessible **robots.txt** file.
 
-![alt text](images/image-nmap.png)
+![alt text](images/nmap_scan.png)
 
 Let's keep this information for later and focus on further enumeration on the targets web page.
 
@@ -167,7 +167,7 @@ After logging in as `johncusack` we can now simply `ls` and we find inside the `
 
 And we captured the user flag!
 
-![alt text](images/image-17.png)
+![alt text](images/user_flag.png)
 
 ---
 
@@ -225,7 +225,7 @@ We can simply `cd /root` and `cat root.txt`
 
 The root flag is ours!
 
-![alt text](images/image-23.png)
+![alt text](images/root_flag.png)
 
 ---
 

@@ -5,8 +5,11 @@ Here you can find writeups from various HackTheBox machines, organized by **diff
 ---
 
 ### Easy
+  -  (Preview) [Artificial](machines/easy/artificial/artificial-writeup.md) - Linux
+  -  [Data](machines/easy/data/data-writeup.md) - Linux
   -  [Dog](machines/easy/dog/dog-writeup.md) - Linux
 ### Medium
    - [Cypher](machines/medium/cypher/cypher-writeup.md) - Linux
-   - [Schooled](machines/medium/schooled/schooled-writeup.md) - FreeBSD
    - (Preview) [Era](machines/medium/era/era-writeup.md) - Linux
+   - [Schooled](machines/medium/schooled/schooled-writeup.md) - FreeBSD
+   
