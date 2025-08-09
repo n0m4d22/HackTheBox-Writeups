@@ -10,6 +10,7 @@ Here you can find writeups from various HackTheBox machines, organized by **diff
   -  [Data](machines/easy/data/data-writeup.md) - Linux
   -  [Dog](machines/easy/dog/dog-writeup.md) - Linux
   -  (Preview) [Editor](machines/easy/editor/editor-writeup.md) - Linux
+  -  [VulnEscape](machines/easy/vulnescape/vulnescape-writeup.md) - Windows
 ### Medium
    - [Cypher](machines/medium/cypher/cypher-writeup.md) - Linux
    - (Preview) [Era](machines/medium/era/era-writeup.md) - Linux
