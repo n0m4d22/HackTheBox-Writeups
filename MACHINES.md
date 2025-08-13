@@ -5,14 +5,15 @@ Here you can find writeups from various HackTheBox machines, organized by **diff
 ---
 
 ### Easy
-  -  (Preview) [Artificial](machines/easy/artificial/artificial-writeup.md) - Linux
+  -  *(Preview)* [Artificial](machines/easy/artificial/artificial-writeup.md) - Linux
   -  [Code](machines/easy/code/code-writeup.md) - Linux
   -  [Data](machines/easy/data/data-writeup.md) - Linux
   -  [Dog](machines/easy/dog/dog-writeup.md) - Linux
-  -  (Preview) [Editor](machines/easy/editor/editor-writeup.md) - Linux
+  -  *(Preview)* [Editor](machines/easy/editor/editor-writeup.md) - Linux
+  -  *(Preview)* [Nocturnal](machines/easy/nocturnal/nocturnal-writeup.md) - Linux - ***Coming 16/8***
   -  [VulnEscape](machines/easy/vulnescape/vulnescape-writeup.md) - Windows
 ### Medium
    - [Cypher](machines/medium/cypher/cypher-writeup.md) - Linux
-   - (Preview) [Era](machines/medium/era/era-writeup.md) - Linux
+   - *(Preview)* [Era](machines/medium/era/era-writeup.md) - Linux
    - [Schooled](machines/medium/schooled/schooled-writeup.md) - FreeBSD
    
