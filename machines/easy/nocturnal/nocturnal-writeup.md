@@ -16,4 +16,4 @@
 ---
 
 # Notice
-***This machine is still active, therefore the writeup will remain hidden until its retirement date.***
+***This machine is still active, therefore the write-up will remain hidden until its retirement date.***

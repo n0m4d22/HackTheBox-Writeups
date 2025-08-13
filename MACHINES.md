@@ -1,6 +1,6 @@
 # Machines | [Writeups](README.md)
 
-Here you can find writeups from various HackTheBox machines, organized by **difficulty**.
+Here you can find my personal write-ups, for various HackTheBox machines, organized by **difficulty**.
 
 ---
 
