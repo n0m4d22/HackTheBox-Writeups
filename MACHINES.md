@@ -10,7 +10,7 @@ Here you can find my personal write-ups, for various HackTheBox machines, organi
   -  [Data](machines/easy/data/data-writeup.md) - Linux
   -  [Dog](machines/easy/dog/dog-writeup.md) - Linux
   -  *(Preview)* [Editor](machines/easy/editor/editor-writeup.md) - Linux
-  -  *(Preview)* [Nocturnal](machines/easy/nocturnal/nocturnal-writeup.md) - Linux - ***Coming 16/8***
+  -  [Nocturnal](machines/easy/nocturnal/nocturnal-writeup.md) - Linux
   -  [VulnEscape](machines/easy/vulnescape/vulnescape-writeup.md) - Windows
 ### Medium
    - [Cypher](machines/medium/cypher/cypher-writeup.md) - Linux
