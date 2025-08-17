@@ -62,10 +62,6 @@ Nmap done: 1 IP address (1 host up) scanned in 36.26 seconds
 #### Results:
 - `3389/tcp: ms-wbt-server - Microsoft Terminal Services`
 
----
-
-## Target Enumeration
-
 Knowing that port `3389` is open, a remote desktop session can be initiated, using tools like `xfreerdp3` or `evil-winrm`.
 
 ```bash

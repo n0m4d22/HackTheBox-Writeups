@@ -15,5 +15,6 @@ Here you can find my personal write-ups, for various HackTheBox machines, organi
 ### Medium
    - [Cypher](machines/medium/cypher/cypher-writeup.md) - Linux
    - *(Preview)* [Era](machines/medium/era/era-writeup.md) - Linux
+   - [Olympus](machines/medium/olympus/olympus-writeup.md) - Linux
    - [Schooled](machines/medium/schooled/schooled-writeup.md) - FreeBSD
    
